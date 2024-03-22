@@ -1,0 +1,201 @@
+site_name: DFR Technical Wiki
+site_url: https://dallasformularacing.wiki.com/
+
+repo_name: DallasFormulaRacing/
+repo_url: https://github.com/DallasFormulaRacing/
+
+copyright: Copyright &copy; 2023 - 2024 Dallas Formula Racing
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    # - navigation.sections
+    - navigation.path
+    - navigation.indexes
+    - navigation.footer
+    - navigation.top
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    - content.code.copy
+    - content.code.select
+
+  logo: assets/resized-Cropped-white-logo-DFR.png
+  favicon: assets/cropped-Logo-Updated-PNG-1.webp
+
+  
+  
+  
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      primary: teal
+      accent: deep orange
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      primary: teal
+      accent: deep orange
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: deep orange
+      toggle:
+        icon: material/weather-night
+        name: Switch to system preference
+  
+  icon:
+    admonition:
+      note: material/pencil
+      abstract: octicons/checklist-16
+      info: octicons/info-16
+      tip: material/speedometer
+      success: octicons/check-16
+      question: octicons/question-16
+      warning: octicons/alert-16
+      failure: octicons/x-circle-16
+      danger: octicons/zap-16
+      bug: octicons/bug-16
+      example: octicons/beaker-16
+      quote: octicons/quote-16
+
+    repo: fontawesome/brands/github 
+    
+  
+markdown_extensions:
+  # Admonitions (Call-outs)
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
+  # Annotations, Buttons, Grids, and Images
+  - attr_list
+  - md_in_html
+
+  # Code Blocks. Content Tabs, and Toolti[s]
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+  # Tables
+  - tables
+
+  # Mermaid Diagrams
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+  # Footnotes
+  - footnotes
+
+  # Formatting
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+
+  # Icons and emojis
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  
+  # Lists
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+  # Math via Katex
+  - pymdownx.arithmatex:
+      generic: true
+
+
+extra_javascript:
+  - javascripts/katex.js 
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js  
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
+
+extra_css:
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
+
+plugins:
+  - search
+  - glightbox
+  - git-revision-date-localized
+
+extra:
+  social:
+    - icon: fontawesome/brands/github 
+      link: https://github.com/DallasFormulaRacing
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/dallas-formula-racing
+    - icon: fontawesome/brands/instagram
+      link: https://www.instagram.com/dallasformularacing/
+    - icon: fontawesome/brands/facebook
+      link: https://www.facebook.com/dallasformularacing
+    - icon: fontawesome/brands/x-twitter
+      link: https://twitter.com/dallasformula
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/@dallasformularacing3979
+
+nav:
+  - Home: index.md
+
+  - Data Acquisition:
+    - Data Acquisition/index.md
+    - Developer's Guide:
+      - Data Acquisition/Dev Guide/index.md
+      - Code Editors: Data Acquisition/Dev Guide/code-editors.md
+      - Build, Flash, and Debug: Data Acquisition/Dev Guide/build-flash-debug.md
+      - Viewing Serial Output: Data Acquisition/Dev Guide/view-serial-output.md
+      - Viewing RTOS Threads, Queues, and Memory: Data Acquisition/Dev Guide/view-threads-queues-memory.md
+      - Unit Testing: Data Acquisition/Dev Guide/unit-testing.md
+      - Source Code Docs: Data Acquisition/Dev Guide/source-code-docs.md
+      - Contributing and Version Control: Data Acquisition/Dev Guide/contributing-version-control.md
+      - Style Guide: Data Acquisition/Dev Guide/style-guide.md
+      - IDE Project Settings: Data Acquisition/Dev Guide/cubeIDE-cubeMX-settings.md
+      - Environment Troubleshooting: Data Acquisition/Dev Guide/environment-troubleshooting.md
+    - Firmware Design:
+      - Data Acquisition/Firmware Design/index.md
+      - Architecture Overview: Data Acquisition/Firmware Design/architecture-overview.md
+      - File Structure: Data Acquisition/Firmware Design/file-structure.md
+      - RTOS and Concurrency: Data Acquisition/Firmware Design/rtos-concurrency.md
+    - Data Logging:
+      - Data Acquisition/Application/Data Logger/data_logger.md
+    - File System:
+      - Data Acquisition/Application/File System/fat_fs.md
+    - Engine Controll Unit (ECU):
+      - Data Acquisition/Sensor/ECU/pe3_8400p.md
+    - Suspension Travel Potentiometers:
+      - Data Acquisition/Sensor/Linear Potentiometer/index.md
+      - Data Acquisition/Sensor/Linear Potentiometer/SLS_1322-3.md
+    - Accelerometer:
+      - Data Acquisition/Sensor/Accelerometer/index.md
+      - Data Acquisition/Sensor/Accelerometer/lsm303dlhc.md
+    - Gyroscope:
+      - Data Acquisition/Sensor/Gyroscope/index.md
+      - Data Acquisition/Sensor/Gyroscope/l3gd20h.md
+  
+  - Dashboard Display:
+    - Dashboard Display/about.md
