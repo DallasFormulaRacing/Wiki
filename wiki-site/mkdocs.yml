@@ -181,8 +181,10 @@ nav:
       - Architecture Overview: Data Acquisition/Firmware Design/architecture-overview.md
       - File Structure: Data Acquisition/Firmware Design/file-structure.md
       - RTOS and Concurrency: Data Acquisition/Firmware Design/rtos-concurrency.md
-    - Data Logger:
-      - Data Acquisition/Data Logger/data_logger.md
+    - Data Logging:
+      - Data Acquisition/Application/Data Logger/data_logger.md
+    - File System:
+      - Data Acquisition/Application/File System/fat_fs.md
     - Engine Controll Unit (ECU):
       - Data Acquisition/Sensor/ECU/index.md
       - Data Acquisition/Sensor/ECU/pe3.md
