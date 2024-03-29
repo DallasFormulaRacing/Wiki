@@ -196,6 +196,10 @@ nav:
     - Gyroscope:
       - Data Acquisition/Sensor/Gyroscope/index.md
       - Data Acquisition/Sensor/Gyroscope/l3gd20h.md
-  
+    - DAQ Revision 1:
+      - Data Acquisition/DAQ Revision 1/Overview.md
+      - Data Acquisition/DAQ Revision 1/STM32.md
+      - Data Acquisition/DAQ Revision 1/communicationProtocols.md
+      - Data Acquisition\DAQ Revision 1\miscellaneous.md
   - Dashboard Display:
     - Dashboard Display/about.md
