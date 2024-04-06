@@ -186,7 +186,8 @@ nav:
     - File System:
       - Data Acquisition/Application/File System/fat_fs.md
     - Engine Controll Unit (ECU):
-      - Data Acquisition/Sensor/ECU/pe3_8400p.md
+      - Data Acquisition/Sensor/ECU/index.md
+      - Data Acquisition/Sensor/ECU/pe3.md
     - Suspension Travel Potentiometers:
       - Data Acquisition/Sensor/Linear Potentiometer/index.md
       - Data Acquisition/Sensor/Linear Potentiometer/SLS_1322-3.md
@@ -199,5 +200,9 @@ nav:
     - Custom DAQ PCB Boards:
       - Data Acquisition/Custom DAQ PCB Boards/index.md
       - Data Acquisition/Custom DAQ PCB Boards/DAQ Revision 1/Revision 1.md
+    - Supported Platforms:
+      - Data Acquisition/Supported Platforms/index.md
+      - Data Acquisition/Supported Platforms/STMicroelectronics/stmicroelectronics.md
+  
   - Dashboard Display:
     - Dashboard Display/about.md
