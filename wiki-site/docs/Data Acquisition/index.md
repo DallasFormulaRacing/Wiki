@@ -16,7 +16,7 @@
 
 ## Hardware and Equipment
 
-![image](./images/stm32f429zi_board.avif){ width="300"; align=right }      
+![image](./images/stm32f429zi_board.avif){ width="200"; align=right }      
 
 ### Target Device
 The [STM32 Nucleo F429ZI](https://www.st.com/en/evaluation-tools/nucleo-f429zi.html) microcontroller development board is used as the current target device for code merged to the `main` and `develop` branches. Theoretically, other Arm Cortex M4 based STM32 devices with the necessary peripherals should be able to run the same program.
