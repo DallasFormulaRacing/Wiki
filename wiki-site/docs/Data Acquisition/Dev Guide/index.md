@@ -1,5 +1,7 @@
 # Developer's Guide
 
+This page was last updated: *{{ git_revision_date_localized }}*
+
 ## Dev Tools
 
 The following are necessary and useful for developing the DAQ's firmware.
