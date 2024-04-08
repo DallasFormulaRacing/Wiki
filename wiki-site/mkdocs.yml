@@ -202,4 +202,11 @@ nav:
       - Data Acquisition/Supported Platforms/STMicroelectronics/stmicroelectronics.md
   
   - Dashboard Display:
-    - Dashboard Display/about.md
+    - Dashboard Display/index.md
+    - Developer's Guide:
+      - Dashboard Display/Dev Guide/index.md
+      - Dashboard Display/Dev Guide/os-flashing-tools.md
+      - Dashboard Display/Dev Guide/starter-package.md
+      - Dashboard Display/Dev Guide/terminal-and-serial.md
+      - Dashboard Display/Dev Guide/developer-package.md
+      - Dashboard Display/Dev Guide/running-qt5-apps.md
