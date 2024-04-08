@@ -303,11 +303,19 @@ cd build-openstlinuxeglfs-stm32mp1/tmp-glibc/deploy/sdk/
 
 ![Path to the Custom SDK Installer](./images/custom-sdk-installer-path.png)
 
+Mark the script installer to run as an executable:
+
+```
+chmod +x st-example-image-qt-openstlinux-___-snapshot.sh
+```
+
 Run the installer and store the SDK in `SDK/`:
 
 ```
 ./st-example-image-qt-openstlinux-___-snapshot.sh -d ./../../../../SDK/
 ```
+
+![Custom SDK Installatio](./images/custom_sdk_installation.png)
 
 Source the installer:
 
