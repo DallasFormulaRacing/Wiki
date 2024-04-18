@@ -78,7 +78,7 @@ This is the voltage reference used for the built-in ADCs on the board and must b
 
 ### HSE
 High-Speed External (HSE) is not required for the board, but is something that most boards will have. The point of this pin is to add an external clock to the microcontroller to ensure a more precise and accurate clock.
-Note that this external oscillator needs to be within a certain range of frequencies and this differs for each board[^2]. The stm32 F429 that is used for this DAQ can take an oscillator frequency ranging from 4 to 26 MHz.
+Note that this external oscillator needs to be within a certain range of frequencies and this differs for each board[^2]. The stm32F429 that is used for this DAQ can take an oscillator frequency ranging from 4 to 26 MHz. This value is both available in when using the clock configurator in the .IOC file of a STM32CubeIDE project or can be direcly found in the datasheet of the respecitve MCU.
 
 ### VDD, VDDA, VSS, VSSA, and Decoupling Capacitors
 
@@ -132,10 +132,11 @@ For the second SPI peripheral (that is, `SPI5` on CubeMX), the pins are:
 
 
 ### I2C
-I2C requires a pull-up resistor to function properly. These resistors typically range from 2.2 Kilo-Ohm to 10 Kilo-Ohms. The values you consider for the pull resistors matter because they influence the speed and frequency you can support for I2C communication. 
+I2C requires a pull-up resistor to function properly. These resistors typically range from 2 Kilo-Ohm to 10 Kilo-Ohms. The values you consider for the pull resistors matter because they influence the speed and frequency you can support for I2C communication. There is a specific are specific equations to calculate the range of pull up resistor values you can use but they are based on both the speed of the bus and the bus capacitance. The speed of the bus is a given variable but the bus capacitance is unique to each PCB so can be rather hard to calculate proper pull up resistor values. Since bus capacitance can be a tricky value to obtain during the design stage, a rule of thumb for resistor values is used rather than calculating the specific range of resistor values.
+
 
 - If 100 KHz is fast enough for your applications, then you can use a 10 Kilo-Ohm pull-up resistor.
-- If 400 KHz, then 2.2 Kilo-Ohm pull-up resistors will be preferable.
+- If 400 KHz, then 2 Kilo-Ohm pull-up resistors will be preferable.
 
 !!! note
     The larger the value of the pull-up resistor, the smaller the current drawn by the I2C peripheral.
