@@ -180,7 +180,7 @@ nav:
       - Data Acquisition/Firmware Design/index.md
       - Architecture Overview: Data Acquisition/Firmware Design/architecture-overview.md
       - File Structure: Data Acquisition/Firmware Design/file-structure.md
-      - RTOS and Concurrency: Data Acquisition/Firmware Design/rtos-concurrency.md
+      - RTOS and Concurrency: Data Acquisition/Firmware Design/rtos-concurrency.md    
     - Data Logging:
       - Data Acquisition/Application/Data Logger/data_logger.md
     - File System:
@@ -200,6 +200,10 @@ nav:
     - Supported Platforms:
       - Data Acquisition/Supported Platforms/index.md
       - Data Acquisition/Supported Platforms/STMicroelectronics/stmicroelectronics.md
+    - Custom DAQ PCB Boards:
+      - Data Acquisition/Custom DAQ PCB Boards/index.md
+      - Data Acquisition/Custom DAQ PCB Boards/DAQ Revision 1/Revision 1.md
+    
   
   - Dashboard Display:
     - Dashboard Display/index.md
