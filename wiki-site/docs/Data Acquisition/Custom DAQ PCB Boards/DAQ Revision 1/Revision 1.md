@@ -78,7 +78,8 @@ This is the voltage reference used for the built-in ADCs on the board and must b
 
 ### HSE
 High-Speed External (HSE) is not required for the board, but is something that most boards will have. The point of this pin is to add an external clock to the microcontroller to ensure a more precise and accurate clock.
-Note that this external oscillator needs to be within a certain range of frequencies and this differs for each board[^2]. The stm32F429 that is used for this DAQ can take an oscillator frequency ranging from 4 to 26 MHz. This value is both available in when using the clock configurator in the .IOC file of a STM32CubeIDE project or can be direcly found in the datasheet of the respecitve MCU.
+Note that this external oscillator needs to be within a certain range of frequencies and this differs for each board[^2]. The stm32F429 that is used for this DAQ can take an oscillator frequency ranging from 4 to 26 MHz. This value is both available when using the clock configurator in the .IOC file of a STM32CubeIDE project or can be direcly found in the datasheet of the respecitve MCU[^3]. 
+
 
 ### VDD, VDDA, VSS, VSSA, and Decoupling Capacitors
 
@@ -132,7 +133,7 @@ For the second SPI peripheral (that is, `SPI5` on CubeMX), the pins are:
 
 
 ### I2C
-I2C requires a pull-up resistor to function properly. These resistors typically range from 2 Kilo-Ohm to 10 Kilo-Ohms. The values you consider for the pull resistors matter because they influence the speed and frequency you can support for I2C communication. There is a specific are specific equations to calculate the range of pull up resistor values you can use but they are based on both the speed of the bus and the bus capacitance. The speed of the bus is a given variable but the bus capacitance is unique to each PCB so can be rather hard to calculate proper pull up resistor values. Since bus capacitance can be a tricky value to obtain during the design stage, a rule of thumb for resistor values is used rather than calculating the specific range of resistor values.
+I2C requires a pull-up resistor to function properly. These resistors typically range from 2 Kilo-Ohm to 10 Kilo-Ohms. The values you consider for the pull resistors matter because they influence the speed and frequency you can support for I2C communication. There are specific equations to calculate the range of pull up resistor values available to use but they are based on both the speed of the bus and the bus capacitance. The speed of the bus is a given variable but the bus capacitance is unique to each PCB so can be rather hard to calculate proper pull up resistor values. Since bus capacitance can be a tricky value to obtain during the design stage, a rule of thumb for resistor values is used rather than calculating the specific range of resistor values.
 
 
 - If 100 KHz is fast enough for your applications, then you can use a 10 Kilo-Ohm pull-up resistor.
@@ -259,3 +260,5 @@ For the second ADC peripheral (that is, `ADC2` on CubeMX), the pins are:
 [^1]: Application Note: [STM32 F4 Hardware Development Guide](https://www.st.com/resource/en/application_note/an4488-getting-started-with-stm32f4xxxx-mcu-hardware-development-stmicroelectronics.pdf), STMicroelectronics.
 
 [^2]: Application Note: [HSE Configuration Guide](https://www.st.com/resource/en/application_note/an4488-getting-started-with-stm32f4xxxx-mcu-hardware-development-stmicroelectronics.pdf), STMicroelectronics.
+
+[^3]: STM32F429xx datasheet: [HSE input frequencies](https://www.st.com/resource/en/datasheet/stm32f427vg.pdf), STMicroelectronics.
