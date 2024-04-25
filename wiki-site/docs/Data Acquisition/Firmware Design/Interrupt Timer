@@ -1,0 +1,6 @@
+### Hardware Timer
+* Timer clock rate = Timer bus rate / Prescaler
+* time to interrupt = steps / timer clock rate
+* steps - maximum value held in the Auto - Reload Register
+* current timer bus rate = 84 MHz
+* set high speed external clock to crystal/ceramic
