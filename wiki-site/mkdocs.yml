@@ -182,8 +182,11 @@ nav:
       - File Structure: Data Acquisition/Firmware Design/file-structure.md
       - RTOS and Concurrency: Data Acquisition/Firmware Design/rtos-concurrency.md    
     - Data Logging:
+      - Data Acquisition/Application/Data Logger/data_payload.md
+      - Data Acquisition/Application/Data Logger/circular_queue.md
       - Data Acquisition/Application/Data Logger/data_logger.md
     - File System:
+      - Data Acquisition/Application/File System/index.md
       - Data Acquisition/Application/File System/fat_fs.md
     - Engine Controll Unit (ECU):
       - Data Acquisition/Sensor/ECU/index.md
