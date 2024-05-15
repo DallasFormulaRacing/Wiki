@@ -4,6 +4,95 @@ This page was last updated: *{{ git_revision_date_localized }}*
 
 ## F4 Product Line
 
+### GPIO
+
+```mermaid
+classDiagram
+direction LR
+
+namespace Platform Layer {
+    class IGpio {
+        <<interface>>
+
+        +Read() bool
+        +Write()
+        +ToggleDetected() bool
+    }
+
+    class GpioStmF4 {
+
+        +Read() bool
+        +Write()
+        +ToggleDetected() bool
+
+        +InterruptCallback()
+    }
+}
+
+ICan <-- BxCanStmF4
+end
+```
+
+!!! example
+    Reading from a GPIO (port F, pin 15).
+
+    ```C++
+    void ReadFromGpio() {
+        platform::GpioStmF4 gpio(GPIOF, GPIO_PIN_15);
+        bool signal = gpio.Read();
+
+        if (signal) {
+            printf("Signal is HIGH\n");
+        }
+        else {
+            printf("Signal is LOW\n");
+        }
+    }
+    ```
+
+!!! example
+    Outputting a signal.
+
+    ```C++
+    void WriteToGpio() {
+        platform::GpioStmF4 gpio(GPIOF, GPIO_PIN_15);
+
+        printf("Outputing signal\n");
+        gpio.Write(true);
+
+        printf("Turning off signal\n");
+        gpio.Write(false);
+    }
+    ```
+
+!!! warning
+    The `.Write()` method has not been tested on physical hardware.
+
+
+!!! example
+    Implementing a callback function. Assume that the GPIO peripheral and pin has been configured on CubeMX for triggering an interrupt.
+
+    Note that the `.ToggleDetected()` method automatically clears the internal flag.
+
+    ```C++
+    std::shared_ptr<platform::GpioStmF4> gpio_callback_ptr(nullptr);
+
+    void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+        gpio_callback_ptr->InterruptCallback(GPIO_Pin);
+    }
+
+    int main() {
+        auto toggle_switch = std::make_shared<platform::GpioStmF4>(GPIOF, GPIO_PIN_15);
+	    gpio_callback_ptr = toggle_switch;
+
+        for(;;) {
+            if (toggle_switch.ToggleDetected()) {
+                printf("GPIO state changed\n");
+            }
+        }
+    }
+    ```
+
 ### Basic Extended CAN
 
 ```mermaid
@@ -84,15 +173,15 @@ The implementation of automatically shifts the lower-bound value of the CAN ID r
 !!! example
     Configuring a single filter bank by defining a the higher and lower bounds of acceptable CAN IDs.
 
-```c++
-void ConfigureFilterBank(uint8_t can_id) {
-    // Assume that CubeMX code for `hcan1` has already occured
-    platform::BxCanStmF4 bx_can_peripheral(hcan1);
-    static constexpr uint16_t kHigherBoundMask = 0x1FFF;
-    bx_can_peripheral.ConfigureFilter((can_id >> 13),
-                                      (can_id & kHigherBoundMask));
-}
-```
+    ```c++
+    void ConfigureFilterBank(uint8_t can_id) {
+        // Assume that CubeMX code for `hcan1` has already occured
+        platform::BxCanStmF4 bx_can_peripheral(hcan1);
+        static constexpr uint16_t kHigherBoundMask = 0x1FFF;
+        bx_can_peripheral.ConfigureFilter((can_id >> 13),
+                                        (can_id & kHigherBoundMask));
+    }
+    ```
 
 !!! warning
     As a library, this class needs more improvement in favor of additional configurability and robustness.
