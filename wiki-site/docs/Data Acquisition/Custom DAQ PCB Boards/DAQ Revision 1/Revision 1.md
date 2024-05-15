@@ -213,7 +213,11 @@ Since there are multiple USBs that could potentially power the board, Schottky d
 
 ### USB Power
 
-USB-C is used to supply the board with 5V, which is then fed to the AMS1117 LDO voltage regulator used to convert that 5V to 3.3V for the MCU. Realistically, USB-C could have been used for both USB-to-UART and for power, but I felt it would have been easier to separate them to guarantee they both could function correctly. Future iterations could see them both combined so I could remove 1 USB connector from the board.  
+USB-C is used to supply the board with 5V, which is then fed to the AMS1117 LDO voltage regulator used to convert that 5V to 3.3V for the MCU. Realistically, USB-C could have been used for both USB-to-UART and for power, but I felt it would have been easier to separate them to guarantee they both could function correctly. Future iterations could see them both combined so I could remove 1 USB connector from the board.
+
+Note that VBus is coming from the power source. So, it is not necessary to enable the microcontroller's Vbus in CubeMx when configuring the firmware despite the following warning when auto-generating code:
+
+![Vbus Warning](./images/pcb_vbus_warning.png)
 
 ### GPIO
 
@@ -255,6 +259,12 @@ For the second ADC peripheral (that is, `ADC2` on CubeMX), the pins are:
 |         PA6          |    IN6    |
 |         PA78         |    IN7    |
 
+
+## Bugs
+
+The USART peripheral assigned to the UART-USB bridge circuit does not output valid content. Repeatedly "poking" the pad of the Rx or Tx pin with a probe had yielded the following results:
+
+![Resulting UART Output](./images/GarbageUartOutput.png)
 
 
 [^1]: Application Note: [STM32 F4 Hardware Development Guide](https://www.st.com/resource/en/application_note/an4488-getting-started-with-stm32f4xxxx-mcu-hardware-development-stmicroelectronics.pdf), STMicroelectronics.

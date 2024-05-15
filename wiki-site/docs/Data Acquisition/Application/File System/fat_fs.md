@@ -260,6 +260,9 @@ Recall that  `USBH_Process()` was called through the `MX_USB_HOST_Process()` hel
 
 However, to make this thread functional, **it is vitally important to increase the stack size to 1024**. This can be done by setting the *USBH_PROCESS_STACK_SIZE* to `1024 Words`, as shown in the configuration image above. By default, this is set to only 128.
 
+!!! tip
+  It may be helpful to re-test the firmware immediately after modifying thread properties, such as stack size. Insufficient memory allocated to a thread will cause the microcontroller to suddenly context-switch to a Hard Fault handler, where it is stuck in an infinite loop. While step-debugging, you can see that this may occur at any moment. Simply increase the stack size until the thread can run reliably for multiple iterations.
+
 Moving on, since the USB Host leverages interrupts to update its state machine, additional configurations are required to make it functional with FreeRTOS. In the NVIC settings, the *Preemption Priority* column of the *USB On The Go FS global interrupt* field is set to `15`. This lowers the priority of the USB's interrupt so that it does not conflict with other pre-existing system interrupts.
 
 !!! tip
@@ -277,7 +280,74 @@ Moving on, since the USB Host leverages interrupts to update its state machine, 
 
     As of now, this has not raised any noticeable issues.
 
-Lastly, to prevent a seemingly mysterious error, `NVIC_SetPriorityGrouping( 0 );` must be added in initialization starting the RTOS kernel.
+Lastly, we must configure the hardware interrupt signals to work with RTOS by adding `NVIC_SetPriorityGrouping( 0 );` right before the RTOS Kernel is initialized and started.
+
+
+!!! warning
+  Omitting `NVIC_SetPriorityGrouping( 0 );` will cause the microcontroller to get stuck in the following code at line 770 of the `port.c` file:
+
+  ```C
+  
+  #if( configASSERT_DEFINED == 1 )
+
+	void vPortValidateInterruptPriority( void )
+	{
+    uint32_t ulCurrentInterrupt;
+    uint8_t ucCurrentPriority;
+
+    /* Obtain the number of the currently executing interrupt. */
+    __asm volatile( "mrs %0, ipsr" : "=r"( ulCurrentInterrupt ) :: "memory" );
+
+    /* Is the interrupt number a user defined interrupt? */
+    if( ulCurrentInterrupt >= portFIRST_USER_INTERRUPT_NUMBER )
+    {
+      /* Look up the interrupt's priority. */
+      ucCurrentPriority = pcInterruptPriorityRegisters[ ulCurrentInterrupt ];
+
+      /* The following assertion will fail if a service routine (ISR) for
+      an interrupt that has been assigned a priority above
+      configMAX_SYSCALL_INTERRUPT_PRIORITY calls an ISR safe FreeRTOS API
+      function.  ISR safe FreeRTOS API functions must *only* be called
+      from interrupts that have been assigned a priority at or below
+      configMAX_SYSCALL_INTERRUPT_PRIORITY.
+
+      Numerically low interrupt priority numbers represent logically high
+      interrupt priorities, therefore the priority of the interrupt must
+      be set to a value equal to or numerically *higher* than
+      configMAX_SYSCALL_INTERRUPT_PRIORITY.
+
+      Interrupts that	use the FreeRTOS API must not be left at their
+      default priority of	zero as that is the highest possible priority,
+      which is guaranteed to be above configMAX_SYSCALL_INTERRUPT_PRIORITY,
+      and	therefore also guaranteed to be invalid.
+
+      FreeRTOS maintains separate thread and ISR API functions to ensure
+      interrupt entry is as fast and simple as possible.
+
+      The following links provide detailed information:
+      http://www.freertos.org/RTOS-Cortex-M3-M4.html
+      http://www.freertos.org/FAQHelp.html */
+      configASSERT( ucCurrentPriority >= ucMaxSysCallPriority );
+    }
+
+    /* Priority grouping:  The interrupt controller (NVIC) allows the bits
+    that define each interrupt's priority to be split between bits that
+    define the interrupt's pre-emption priority bits and bits that define
+    the interrupt's sub-priority.  For simplicity all bits must be defined
+    to be pre-emption priority bits.  The following assertion will fail if
+    this is not the case (if some bits represent a sub-priority).
+
+    If the application only uses CMSIS libraries for interrupt
+    configuration then the correct setting can be achieved on all Cortex-M
+    devices by calling NVIC_SetPriorityGrouping( 0 ); before starting the
+    scheduler.  Note however that some vendor specific peripheral libraries
+    assume a non-zero priority group setting, in which cases using a value
+    of zero will result in unpredictable behaviour. */
+    configASSERT( ( portAIRCR_REG & portPRIORITY_GROUP_MASK ) <= ulMaxPRIGROUPValue );
+  }
+
+  #endif /* configASSERT_DEFINED */
+  ```
 
 The global boolean variables for synchronizing our application code with the USB's interrupts described in the [USB in a Baremetal Environment](#usb-in-a-baremetal-environment) section still applies. Finally, we can initialize our own thread to make use of the USB flash drive.
 

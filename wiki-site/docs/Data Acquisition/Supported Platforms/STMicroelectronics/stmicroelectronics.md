@@ -29,9 +29,10 @@ namespace Platform Layer {
     }
 }
 
-ICan <-- BxCanStmF4
 end
 ```
+
+#### Reading
 
 !!! example
     Reading from a GPIO (port F, pin 15).
@@ -49,6 +50,8 @@ end
         }
     }
     ```
+
+#### Writing
 
 !!! example
     Outputting a signal.
@@ -68,6 +71,7 @@ end
 !!! warning
     The `.Write()` method has not been tested on physical hardware.
 
+#### Interrupt Callback
 
 !!! example
     Implementing a callback function. Assume that the GPIO peripheral and pin has been configured on CubeMX for triggering an interrupt.
