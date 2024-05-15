@@ -94,7 +94,7 @@ Be sure to provide all the dependencies:
 - A boolean for sharing whether we are currently logging.
 
 !!! example
-    Integrating the `DataLogger`.
+    Using the `DataLogger`.
 
     ```C++
     int cppMain() {
@@ -173,9 +173,11 @@ The default state at bootup. That is, entry actions does not occur when the devi
 
 ## Current Implementation
 
-Our [FatFs wrapper](../File%20System/fat_fs.md) fulfills the requirements of the `IFileSystem` interface.
+### File System
 
-USB for our storage unit. Thanks to our state machine, we only need one boolean variable to observe whether a USB flash drive is connected or ejected. Note that in C, there is no `bool` type, so we settle for using `uint8_t`.
+Our [FatFs wrapper](../File%20System/fat_fs.md) fulfills the requirements of the `IFileSystem` interface. USB is used for our storage unit, so be sure to enable the following CubeMX settings described in that page's *USB in a Baremetal Environment* and *USB in an RTOS Environment* sections.
+
+Thanks to our state machine, we only need one boolean variable to observe whether a USB flash drive is connected or ejected. Note that in C, there is no `bool` type, so we settle for using `uint8_t`.
 
 In `USB_HOST/App/usb_host.c`:
 
@@ -221,9 +223,26 @@ extern uint8_t usb_connected_observer;
 
 This variable will be used for initializing the `DataLogger`.
 
-The `CircularQueue`, `DataPayload`, and `IGpio` are simple to provide to the `DataLogger`. Make sure the user switch is configured to have an interrupt callback function on both falling and rising edges.
+### User Interrupt Signal
 
-Lastly, we just need to define a boolean variable for the `DataLogger` to internally update, according to whether it is logging.
+To provide the user the ability to toggle data logging, we leverage an interrupt signal. This is more power efficient and responsive than polling. A switch is preferrable over a push-button for two reasons:
+
+- Enabling/disabling is visually noticeable to the user.
+- No need to handle button de-bouncing in neither the hardware or firmware.
+
+To enable a GPIO pin as an interrupt, enable the pin for **GPIO_EXTIx** on CubeMX. Do not enable it as a **GPIO_Input** — that is for polling operations. Then, enable the interrupt signal in the NVIC interrupt table.
+
+![GPIO Pin Enabled](./images/switch_gpio_enable.png)
+
+![GPIO Interrupt Enabled](./images/gpio_interrupt_enable.png)
+
+Then, configure when the interrupt signal will occur. Note that these interrupt signals can be very sensitive. So, the `DataLogger` uses a strategy of being notified when the switch is toggled. When toggled, the `DataLogger` will poll the GPIO pin to confirm whether the state is `HIGH` or `LOW`. This helps toggling to be far less sporadic and unstable.
+
+![GPIO Interrupt Mode](./images/gpio_interrupt_mode.png)
+
+### Integrating
+
+The `CircularQueue` and `DataPayload` are simple to provide to the `DataLogger`. Lastly, we just need to define a boolean variable for the `DataLogger` to internally update, according to whether it is logging.
 
 !!! example
     Integrating `DataLogger` with `FatFs` to write to a USB.
