@@ -174,8 +174,9 @@ nav:
       - Source Code Docs: Data Acquisition/Dev Guide/source-code-docs.md
       - Contributing and Version Control: Data Acquisition/Dev Guide/contributing-version-control.md
       - Style Guide: Data Acquisition/Dev Guide/style-guide.md
-      - IDE Project Settings: Data Acquisition/Dev Guide/cubeIDE-cubeMX-settings.md
-      - Environment Troubleshooting: Data Acquisition/Dev Guide/environment-troubleshooting.md
+      - Code Generator Configs: Data Acquisition/Dev Guide/code-generator-configs.md
+      - Enabling printf: Data Acquisition/Dev Guide/enabling-printf.md
+      - Enabling C++: Data Acquisition/Dev Guide/enabling-cpp.md
     - Firmware Design:
       - Data Acquisition/Firmware Design/index.md
       - Architecture Overview: Data Acquisition/Firmware Design/architecture-overview.md
