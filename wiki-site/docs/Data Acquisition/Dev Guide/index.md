@@ -53,10 +53,12 @@ Records of team-agreed standards to maintain consistency within our development.
 
 <div class="grid cards" markdown>
 
-- :octicons-gear-16: __[IDE Project Settings]__ – Records of settings that were made manually.
-- :octicons-bug-16: __[Environment Troubleshooting]__ – Dev environment-related errors.
+- :simple-opensourcehardware: __[Code Generation Configs]__ – Modifying CubeIDE's organization of the HAL library. 
+- :material-text: __[Enabling printf( )]__ – Overriding C's `printf()` to output through the UART peripheral.
+- :material-fire: __[Enabling C++]__ – Setting up the environment to compile our codebase.
 
 </div>
 
-  [IDE Project Settings]: cubeIDE-cubeMX-settings.md
-  [Environment Troubleshooting]: environment-troubleshooting.md
+  [Code Generation Configs]: code-generator-configs.md
+  [Enabling printf( )]: enabling-printf.md
+  [Enabling C++]: enabling-cpp.md
