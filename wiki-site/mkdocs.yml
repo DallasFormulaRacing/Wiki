@@ -181,7 +181,7 @@ nav:
       - Data Acquisition/Firmware Design/index.md
       - Architecture Overview: Data Acquisition/Firmware Design/architecture-overview.md
       - File Structure: Data Acquisition/Firmware Design/file-structure.md
-      - RTOS and Concurrency: Data Acquisition/Firmware Design/rtos-concurrency.md    
+      - RTOS and Concurrency: Data Acquisition/Firmware Design/timing-and-concurrency.md    
     - Data Logging:
       - Data Acquisition/Application/Data Logger/data_payload.md
       - Data Acquisition/Application/Data Logger/circular_queue.md
