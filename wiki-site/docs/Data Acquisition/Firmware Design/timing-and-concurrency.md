@@ -66,9 +66,9 @@ Enable the following modes for the RCC peripheral.
 - Each firmware component is dedicated its own thread. Therefore, each firmware component has its own dedicated super loop.
 - Note that if the microcontroller only has 1 core, then only one thread will run at a time despite having numerous threads.
 - List of threads:
-  - One each for every sensor
-  - Data logging
-  - Time stamping
+	- One each for every sensor
+	- Data logging
+	- Time stamping
 
 ### Scheduling
 
@@ -101,6 +101,37 @@ Using a mutex before accessing the shared `CircularQueue` will ensure the queue'
 
 ### Process Summary
 
-sequence diagram with resource claiming
+Consider the following scenario.
 
-timing diagram with priorities and preemption
+![Multi-threading sequence diagram](./images/multithreading_sequence_diagram.svg)
+
+
+- `DataLogger` is responsible for user-interaction and must prevent the `CircularQueue` from overflowing. Naturally, we will have this task run more often with higher priority.
+- `DataLogger` successfully locks `CircularQueue` to check for data to log.
+- Since no other firmware component has locked the `CircularQueue`, `DataLogger` successfully claimed it for its use.
+- Since `DataLogger` has higher priority than the sensor threads, it is not preempted and therefore completes its task without interruption before suspending itself.
+
+This first transaction is the best case scenario for performance. Without other threads trying to lock the same shared resource, there is less **context switching** — this is known to be the largest cause of delay in multi-threading.
+
+- `LinPots` lock an instance of `DataPayload`.
+- However, suppose that the `ECU` has higher priority, `LinPots` is preempted and put to a pause.
+- `ECU` tries to claim `DataPayload`, but it is already claimed by `LinPots`. So, `ECU` is suspended.
+- The processor returns to `LinPots` to finish the job and release the mutex.
+- With `DataPayload` available, the processor continues with `ECU`'s attempt to lock it.
+- `ECU` finishes its task and releases `DataPayload`.
+
+The mutex between these two threads is technically not necessary, as they are both updating different fields of the `DataPayload` struct. Rather, the mutex is there to handle sharing with the `Timestamp` thread. This is demonstrated next.
+
+- The `IMU` thread claims `DataPayload`.
+- `IMU` is preempted by `DataLogger` due to having lower priority.
+- `DataLogger` claims the `CircularQueue`.
+- The hardware timer triggers `Timestamp` to run. This has higher priority and preempts over `DataLogger`.
+- `Timestamp` fails to lock `DataPayload`, as it is already claimed by `IMU`. This thread is suspended.
+- The processor returns to `DataLogger` and finishes the task. `CircularQueue` is released.
+- The processor returns to `IMU` to finish the task. `DataPayload` is released.
+- With `DataPayload` finally available, the `Timestamp` thread continues its task and locks the `CircularQueue`.
+- `Timestamp` finishes its task by inserting a copy of `DataPayload` into `CircularQueue`.
+
+Without the `DataPayload` mutex, the `Timestamp` thread could be sampling an incomplete instance of data if it were to interrupt a sensor thread mid-updating.
+
+Without the `CircularQueue` mutex, the `DataLogger` may be less efficient with checking if the queue is empty. And `Timestamp` may be less efficient with checking if the queue is full.
