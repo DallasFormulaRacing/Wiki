@@ -99,6 +99,23 @@ The timestamping thread has higher priority than the sensor threads due to its s
 
 Using a mutex before accessing the shared `CircularQueue` will ensure the queue's status of whether it is full or empty to be more accurate.
 
+### Timestamp Creation
+
+The currenty strategy to creating a **relative** timestamp (that is, a measurement of time in respect to the start of the data logging session), is simple:
+
+- With a known timing deadline, you will know when the timer interrupt will occur.
+- Create a counter variable.
+- Within the interrupt callback function, increment the counter variable.
+- The Timestamp thread will compute the timestamp by multiplying your known time deadline with the counter variable.
+
+$$
+(Time \ deadline)(Number \ of \ timer \ interrupt \ signals) = Timestamp
+$$
+
+In the [earlier example](#stm32-example), we have decided a deadline of 2 seconds. If 7 seconds have passed, then we can expect the counter variable to have counted 3 timer interrupts, each 2 second apart.
+
+This is why the Timestamp thread is the most time-critical.
+
 ### Process Summary
 
 Consider the following scenario.
