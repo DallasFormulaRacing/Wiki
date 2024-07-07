@@ -94,3 +94,16 @@ This gets you access to:
 - Registers
 - Values updated via Watch expressions.
 - Peripheral view — see the contents of registers and peripherals.
+
+# Flashing a Custom Board
+
+Using SWD is the easiest approach, as it minimizes hardware requirements. Only a minimum of 4 pins need to be accessible, which are to be attached to a debugger/programmer device (such as the ST-Link V2/V3):
+
+- `GND`
+- `SWCLK`
+- `SWDIO`
+- `VDD`
+
+Flashing may work without the `VDD` pin being used. However, this may work inconsistently and may fail the flash operation. This is used to read the voltage levels of the target device.
+
+Notice that the `NRST` pin is not being used. This pin is only necessary if the firmware were to re-purpose and configure these pins into something other than SWD.
