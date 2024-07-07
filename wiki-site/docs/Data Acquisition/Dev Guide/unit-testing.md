@@ -6,8 +6,10 @@ This page was last updated: *{{ git_revision_date_localized }}*
 
 First, install [Docker Desktop](https://www.docker.com/products/docker-desktop/). Creating an account is not necessary for our use case.
 
+Move into the [DAQ-Firmware-Libraries sub-module repo](https://github.com/DallasFormulaRacing/DAQ-Firmware-Libraries).
+
 ```
-cd ./Project
+cd ./Project/DAQ_System/Program/DFR_Libraries
 ```
 
 Build the docker image using the Dockerfile:

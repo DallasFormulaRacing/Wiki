@@ -18,9 +18,10 @@ Doxygen does a great job, and is reliable — but looks somewhat outdated. For a
 
 ## Generating & Viewing Documentation
 
-Move into the project directory:
+Move into the [DAQ-Firmware-Libraries sub-module repo](https://github.com/DallasFormulaRacing/DAQ-Firmware-Libraries).
+
 ```
-cd Project
+cd ./Project/DAQ_System/Program/DFR_Libraries
 ```
 
 Build the Docker image:
