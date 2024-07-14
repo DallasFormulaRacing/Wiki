@@ -2,9 +2,11 @@
 
 There are two options for opening this wiki - however, Docker Container is recommended for easy deployment across platforms.
 
+Please note that CTRL+C will end the session on either method. Use another terminal tab if necessary.
+
 ## METHOD 1: Running on a Docker Container
 
-1. Download Docker
+1. Download Docker, and ensure it is running.
 
 2. At the root project directory, build the Docker image:
 
@@ -12,7 +14,7 @@ There are two options for opening this wiki - however, Docker Container is recom
 docker build -t ubuntu-wiki-image .
 ```
 
-> _Note:_ Building the image may take a while.
+> _Note:_ Building the image may take a while if it is your first time.
 
 3. Using this image, create and run a Docker container allowing for port-forwarding and mounting the project files:
 
@@ -20,7 +22,27 @@ docker build -t ubuntu-wiki-image .
 docker run --rm -it --init -p 8000:8000 --name docs-wiki-container -v .:/Wiki ubuntu-wiki-image
 ```
 
-4. Open the provided address in browser.
+4. Open the provided address in browser or use `open`.
+
+> _Note_: You may run into an error when you try to run if you did not close your last container properly. Open the collapsible below if this happens.
+
+<details>
+
+<summary>docker daemon error guide</summary>
+
+Your error will look something like this:
+
+```
+docker: Error response from daemon: Conflict. The container name "/docs-wiki-container" is already in use by container "<<RANDOMLETTERS&NUMBERS>>". You have to remove (or rename) that container to be able to reuse that name.
+```
+
+To fix, run the `docker ps -a` to list all active containers.
+
+Then either `remove` or `stop` the container(s) that you want with their `CONTAINER_ID`: to remove an idle container, use `docker rm CONTAINER_ID` and to stop an active container, use `docker stop CONTAINER_ID`.
+
+After you run the appropriate command(s), attempt to build and run again.
+
+</details>
 
 ## METHOD 2: Running Natively
 
@@ -28,7 +50,7 @@ docker run --rm -it --init -p 8000:8000 --name docs-wiki-container -v .:/Wiki ub
 
 <details>
 
-<summary>Click to Open Trouble Shooter</summary>
+<summary>pip error guide</summary>
 
 ### 0. `pip` error workaround:
 
@@ -75,8 +97,6 @@ wiki-site/venv/lib/
 
    When you are finished browsing the wiki, exit/deactivate the virtual environment with `deactivate`.
 
-> IMPORTANT!
-
 </details>
 
 ### 1. Install dependencies:
@@ -92,10 +112,15 @@ pip install mkdocs-git-revision-date-localized-plugin
 
 > _Note for Windows users_: You may need to prepend `python3 -m` to the `mkdocs` commands below.
 
-Switch to the directory with the `mkdocs.yml` file then execute the following:
+Switch to the directory with the `mkdocs.yml` file with
 
 ```
 cd wiki-site/
+```
+
+Then execute the following:
+
+```
 mkdocs build
 mkdocs serve
 ```
