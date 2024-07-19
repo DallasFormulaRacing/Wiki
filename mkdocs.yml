@@ -4,6 +4,8 @@ site_url: https://dallasformularacing.wiki.com/
 repo_name: DallasFormulaRacing/
 repo_url: https://github.com/DallasFormulaRacing/
 
+docs_dir: wiki-site/docs
+
 copyright: Copyright &copy; 2023 - 2024 Dallas Formula Racing
 
 theme:
