@@ -1,1 +1,8 @@
 wiki-site/site/
+
+/build/
+/dist/
+wiki-site/venv/
+wiki-site/venv/bin/
+wiki-site/venv/include/
+wiki-site/venv/lib/
