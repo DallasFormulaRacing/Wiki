@@ -164,60 +164,112 @@ extra:
 nav:
   - Home: index.md
 
-  - Data Acquisition:
-    - Data Acquisition/index.md
-    - Developer's Guide:
-      - Data Acquisition/Dev Guide/index.md
-      - Code Editors: Data Acquisition/Dev Guide/code-editors.md
-      - Build, Flash, and Debug: Data Acquisition/Dev Guide/build-flash-debug.md
-      - Viewing Serial Output: Data Acquisition/Dev Guide/view-serial-output.md
-      - Viewing RTOS Threads, Queues, and Memory: Data Acquisition/Dev Guide/view-threads-queues-memory.md
-      - Unit Testing: Data Acquisition/Dev Guide/unit-testing.md
-      - Source Code Docs: Data Acquisition/Dev Guide/source-code-docs.md
-      - Contributing and Version Control: Data Acquisition/Dev Guide/contributing-version-control.md
-      - Style Guide: Data Acquisition/Dev Guide/style-guide.md
-      - Code Generator Configs: Data Acquisition/Dev Guide/code-generator-configs.md
-      - Enabling printf: Data Acquisition/Dev Guide/enabling-printf.md
-      - Enabling C++: Data Acquisition/Dev Guide/enabling-cpp.md
-    - Firmware Design:
-      - Data Acquisition/Firmware Design/index.md
-      - Architecture Overview: Data Acquisition/Firmware Design/architecture-overview.md
-      - File Structure: Data Acquisition/Firmware Design/file-structure.md
-      - Timing and Concurrency: Data Acquisition/Firmware Design/timing-and-concurrency.md    
-    - Data Logging:
-      - Data Acquisition/Application/Data Logger/data_payload.md
-      - Data Acquisition/Application/Data Logger/circular_queue.md
-      - Data Acquisition/Application/Data Logger/data_logger.md
-      - Data Acquisition/Application/RTOS Components/mutex.md
-    - File System:
-      - Data Acquisition/Application/File System/index.md
-      - Data Acquisition/Application/File System/fat_fs.md
-    - Engine Controll Unit (ECU):
-      - Data Acquisition/Sensor/ECU/index.md
-      - Data Acquisition/Sensor/ECU/pe3.md
-    - Suspension Travel Potentiometers:
-      - Data Acquisition/Sensor/Linear Potentiometer/index.md
-      - Data Acquisition/Sensor/Linear Potentiometer/SLS_1322-3.md
-    - Accelerometer:
-      - Data Acquisition/Sensor/Accelerometer/index.md
-      - Data Acquisition/Sensor/Accelerometer/lsm303dlhc.md
-    - Gyroscope:
-      - Data Acquisition/Sensor/Gyroscope/index.md
-      - Data Acquisition/Sensor/Gyroscope/l3gd20h.md
-    - Supported Platforms:
-      - Data Acquisition/Supported Platforms/index.md
-      - Data Acquisition/Supported Platforms/STMicroelectronics/stmicroelectronics.md
-    - Custom DAQ PCB Boards:
-      - Data Acquisition/Custom DAQ PCB Boards/index.md
-      - Data Acquisition/Custom DAQ PCB Boards/DAQ Revision 1/Revision 1.md
-    
+  - Embedded:
+    - Embedded/index.md
+    - Getting Started:
+      - Embedded/Getting Started/index.md
+    - Data Acquisition: 
+      - Embedded/Data Acquisition/index.md
+      - Developer's Guide:
+        - Embedded/Data Acquisition/Dev Guide/index.md
+        - Code Editors: Embedded/Data Acquisition/Dev Guide/code-editors.md
+        - Build, Flash, and Debug: Embedded/Data Acquisition/Dev Guide/build-flash-debug.md
+        - Viewing Serial Output: Embedded/Data Acquisition/Dev Guide/view-serial-output.md
+        - Viewing RTOS Threads, Queues, and Memory: Embedded/Data Acquisition/Dev Guide/view-threads-queues-memory.md
+        - Unit Testing: Embedded/Data Acquisition/Dev Guide/unit-testing.md
+        - Source Code Docs: Embedded/Data Acquisition/Dev Guide/source-code-docs.md
+        - Contributing and Version Control: Embedded/Data Acquisition/Dev Guide/contributing-version-control.md
+        - Style Guide: Embedded/Data Acquisition/Dev Guide/style-guide.md
+        - Code Generator Configs: Embedded/Data Acquisition/Dev Guide/code-generator-configs.md
+        - Enabling printf: Embedded/Data Acquisition/Dev Guide/enabling-printf.md
+        - Enabling C++: Embedded/Data Acquisition/Dev Guide/enabling-cpp.md
+      - Firmware Design:
+        - Embedded/Data Acquisition/Firmware Design/index.md
+        - Architecture Overview: Embedded/Data Acquisition/Firmware Design/architecture-overview.md
+        - File Structure: Embedded/Data Acquisition/Firmware Design/file-structure.md
+        - Timing and Concurrency: Embedded/Data Acquisition/Firmware Design/timing-and-concurrency.md    
+      - Data Logging:
+        - Embedded/Data Acquisition/Application/Data Logger/data_payload.md
+        - Embedded/Data Acquisition/Application/Data Logger/circular_queue.md
+        - Embedded/Data Acquisition/Application/Data Logger/data_logger.md
+        - Embedded/Data Acquisition/Application/RTOS Components/mutex.md
+      - File System:
+        - Embedded/Data Acquisition/Application/File System/index.md
+        - Embedded/Data Acquisition/Application/File System/fat_fs.md
+      - Engine Controll Unit (ECU):
+        - Embedded/Data Acquisition/Sensor/ECU/index.md
+        - Embedded/Data Acquisition/Sensor/ECU/pe3.md
+      - Suspension Travel Potentiometers:
+        - Embedded/Data Acquisition/Sensor/Linear Potentiometer/index.md
+        - Embedded/Data Acquisition/Sensor/Linear Potentiometer/SLS_1322-3.md
+      - Accelerometer:
+        - Embedded/Data Acquisition/Sensor/Accelerometer/index.md
+        - Embedded/Data Acquisition/Sensor/Accelerometer/lsm303dlhc.md
+      - Gyroscope:
+        - Embedded/Data Acquisition/Sensor/Gyroscope/index.md
+        - Embedded/Data Acquisition/Sensor/Gyroscope/l3gd20h.md
+      - Supported Platforms:
+        - Embedded/Data Acquisition/Supported Platforms/index.md
+        - Embedded/Data Acquisition/Supported Platforms/STMicroelectronics/stmicroelectronics.md
+
+    - Dashboard Display:
+      - Embedded/Dashboard Display/index.md
+      - Developer's Guide:
+        - Embedded/Dashboard Display/Dev Guide/index.md
+        - Embedded/Dashboard Display/Dev Guide/os-flashing-tools.md
+        - Embedded/Dashboard Display/Dev Guide/starter-package.md
+        - Embedded/Dashboard Display/Dev Guide/terminal-and-serial.md
+        - Embedded/Dashboard Display/Dev Guide/developer-package.md
+        - Embedded/Dashboard Display/Dev Guide/running-qt5-apps.md
   
-  - Dashboard Display:
-    - Dashboard Display/index.md
-    - Developer's Guide:
-      - Dashboard Display/Dev Guide/index.md
-      - Dashboard Display/Dev Guide/os-flashing-tools.md
-      - Dashboard Display/Dev Guide/starter-package.md
-      - Dashboard Display/Dev Guide/terminal-and-serial.md
-      - Dashboard Display/Dev Guide/developer-package.md
-      - Dashboard Display/Dev Guide/running-qt5-apps.md
+  - Electrical:
+      - Electrical/index.md
+      - Getting Started:
+        - Electrical/Getting Started/index.md
+        - Installing KiCAD: Electrical/Getting Started/Installing KiCAD.md
+        - KiCAD Learning Project: Electrical/Getting Started/KiCAD Learning Project.md
+      - Wire Harness:
+        - Electrical/Wire Harness/index.md
+      - Custom DAQ PCB Boards:
+        - Electrical/Custom DAQ PCB Boards/index.md
+        - Electrical/Custom DAQ PCB Boards/DAQ Revision 1/Revision 1.md
+      - Sensors:
+        - Electrical/Sensors/index.md
+
+
+  - Software:
+    - Software/index.md
+  
+  - Powertrain:
+    - Powertrain/index.md
+    - Getting Started:
+      - Powertrain/Getting Started/index.md
+    - Intake:
+      - Powertrain/Intake/index.md
+    - Fuel System:
+      - Powertrain/Fuel System/index.md
+    - Exhaust:
+      - Powertrain/Exhaust/index.md
+    - Cooling System:
+      - Powertrain/Cooling System/index.md
+    - Diff Mounting Final Drive:
+      - Powertrain/Diff Mounting Final Drive/index.md
+    - Drexler:
+      - Powertrain/Drexler/index.md
+
+  - Suspension:
+    - Suspension/index.md
+  
+  - Ergonomics:
+    - Ergonomics/index.md
+
+  - Manufacturing:
+    - Manufacturing/index.md
+
+  - Aerodynamics:
+    - Aerodynamics/index.md
+
+  - Chassis:
+    - Chassis/index.md
+  
+  
