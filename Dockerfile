@@ -14,6 +14,6 @@ RUN \
 
 EXPOSE 8000
 # RUN echo $(pwd)
-WORKDIR "/Wiki/wiki-site"
+WORKDIR "/Wiki/"
 # # RUN echo $(pwd)
 CMD ["mkdocs", "serve", "--dev-addr", "0.0.0.0:8000"]
